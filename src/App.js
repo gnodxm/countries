@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import Countries from "./components/Countries";
-import Infomation from "./components/Information";
+import Display from "./components/Display";
 
 function App() {
   const [findValue, setFindValue] = useState('')
@@ -12,8 +11,8 @@ function App() {
       axios
       .get(`https://restcountries.com/v3.1/name/${findValue}`)
       .then(response => setCountries(response.data))
-      .catch(error => setCountries([]))
-    } setCountries([])
+      .catch(() => setCountries([]))
+    } 
     },[findValue])
   
   return (
@@ -23,9 +22,7 @@ function App() {
           setFindValue(event.target.value)
         }} />
       </div>
-      {countries.length===1
-        ? <Infomation />
-        : <Countries countries={countries} />}
+			<Display countries={countries} />
       
       
     </div>
